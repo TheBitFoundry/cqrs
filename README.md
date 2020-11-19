@@ -4,10 +4,12 @@ The bit foundry command query responsibility segregation package, to act as a gu
 
 ## How to use
 Common folder structure would look something like below:
+```
 |\Commands\
 |          \_InsertEmployee.cs
 |\Queries\
 |         \_FetchEmployee.cs
+```
 
 ### Queries
 
