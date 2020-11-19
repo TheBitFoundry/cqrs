@@ -39,9 +39,30 @@ public class FetchEmployee : Query<Employee>
       // Take note. We also have a copy of the IQueryExecutor interface within Query.
       // This means we can make other queries within queries.
       
-      Result = SelectFirst("SELECT * FROM Employee WHERE Id = @Id;", new { Id = Id });
+      Result = SelectFirst<Employee>("SELECT * FROM Employee WHERE Id = @Id;", new { Id = Id });
   }
 }
 ```
 
+### Commands
+
+``csharp
+public class SaveEmployee : Command<int>
+{
+  private Employee _employee;
+  public SaveEmployee(Employee employee)
+  {
+    _employee = employee;
+  }
+  
+  public override void Execute()
+  {
+    // This version here will return the id of the thing you just inserted "deep" into that db. :)
+    Result = SelectFirst<int>("INSERT INTO employees(name, email) values(@name, @email); select last_insert_id();", new {  });
+    // OR
+    // This version here will just return 0 or 1 if it was successful or not.
+    Result = Insert("INSERT INTO employees(name, email) values(@name, @email);", new {  });
+  }
+}
+```
 
