@@ -10,6 +10,16 @@ Common folder structure would look something like below:
 |\Queries\
 |         \_FetchEmployee.cs
 ```
+### Model Example
+
+```csharp
+public class Employee 
+{
+  public int Id {get;set;}
+  public string Name {get;set;}
+  public string Email {get;set;}
+}
+```
 
 ### Queries
 
@@ -30,12 +40,6 @@ public class FetchEmployee : Query<Employee>
       Result = SelectFirst("SELECT * FROM Employee WHERE Id = @Id;", new { Id = Id });
   }
 }
-
-// Definition of Employee
-public class Employee 
-{
-  public int Id {get;set;}
-  public string Name {get;set;}
-  public string Email {get;set;}
-}
 ```
+
+
