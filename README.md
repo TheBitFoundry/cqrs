@@ -36,7 +36,9 @@ public class FetchEmployee : Query<Employee>
   // we are ovverriding the base class Execute() method.
   public override void Execute() 
   {
-      // Take note. We also have a copy of the IQueryExecutor interface within Query. So, we can make queries to other queries inside a query.
+      // Take note. We also have a copy of the IQueryExecutor interface within Query.
+      // This means we can make other queries within queries.
+      
       Result = SelectFirst("SELECT * FROM Employee WHERE Id = @Id;", new { Id = Id });
   }
 }
