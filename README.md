@@ -14,7 +14,8 @@ Common folder structure would look something like below:
 ### Queries
 
 ```csharp
-// In here liveth a class which should derive from Query. Because the lib supports generic typing we can define our expected return type.
+// In here liveth a class which should derive from Query. 
+// Because the lib supports generic typing we can define our expected return type.
 public class FetchEmployee : Query<Employee>
 {
   private int Id;
@@ -33,6 +34,8 @@ public class FetchEmployee : Query<Employee>
 // Definition of Employee
 public class Employee 
 {
-  
+  public int Id {get;set;}
+  public string Name {get;set;}
+  public string Email {get;set;}
 }
 ```
