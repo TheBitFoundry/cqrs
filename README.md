@@ -46,7 +46,7 @@ public class FetchEmployee : Query<Employee>
 
 ### Commands
 
-``csharp
+```csharp
 public class SaveEmployee : Command<int>
 {
   private Employee _employee;
@@ -58,10 +58,12 @@ public class SaveEmployee : Command<int>
   public override void Execute()
   {
     // This version here will return the id of the thing you just inserted "deep" into that db. :)
-    Result = SelectFirst<int>("INSERT INTO employees(name, email) values(@name, @email); select last_insert_id();", new {  });
+    Result = SelectFirst<int>("INSERT INTO employees(name, email) values(@name, @email); select last_insert_id();", 
+      new { name = _employee.Name, email = _employee.Email });
     // OR
     // This version here will just return 0 or 1 if it was successful or not.
-    Result = Insert("INSERT INTO employees(name, email) values(@name, @email);", new {  });
+    Result = Insert("INSERT INTO employees(name, email) values(@name, @email);", 
+      new { name = _employee.Name, email = _employee.Email });
   }
 }
 ```
